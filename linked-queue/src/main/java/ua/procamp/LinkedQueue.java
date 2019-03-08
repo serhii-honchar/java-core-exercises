@@ -8,6 +8,9 @@ package ua.procamp;
  * @param <T> a generic parameter
  */
 public class LinkedQueue<T> implements Queue<T> {
+    private Node<T> head;
+    private Node<T> tail;
+    private int size;
 
     /**
      * Adds an element to the end of the queue.
@@ -15,7 +18,14 @@ public class LinkedQueue<T> implements Queue<T> {
      * @param element the element to add
      */
     public void add(T element) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        Node<T> newNode = Node.valueOf(element);
+        if (head == null) {
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+        size++;
     }
 
     /**
@@ -24,7 +34,17 @@ public class LinkedQueue<T> implements Queue<T> {
      * @return an element that was retrieved from the head or null if queue is empty
      */
     public T poll() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        if (head != null) {
+            T element = head.element;
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }
+            size--;
+            return element;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -33,7 +53,7 @@ public class LinkedQueue<T> implements Queue<T> {
      * @return an integer value that is a size of queue
      */
     public int size() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        return size;
     }
 
     /**
@@ -42,6 +62,19 @@ public class LinkedQueue<T> implements Queue<T> {
      * @return {@code true} if the queue is empty, returns {@code false} if it's not
      */
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        return head == null;
+    }
+
+    private static class Node<T> {
+        T element;
+        Node<T> next;
+
+        Node(T element) {
+            this.element = element;
+        }
+
+        static <T> Node<T> valueOf(T element) {
+            return new Node<>(element);
+        }
     }
 }
