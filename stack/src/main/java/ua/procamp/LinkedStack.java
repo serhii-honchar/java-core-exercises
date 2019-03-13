@@ -1,25 +1,34 @@
 package ua.procamp;
 
 
+import ua.procamp.exception.EmptyStackException;
+
 public class LinkedStack<T> implements Stack<T> {
 
-	@Override
-	public void push(T element) {
-		throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
-	}
+    private LinkedList<T> list = new LinkedList<T>();
 
-	@Override
-	public T pop() {
-		throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
-	}
+    @Override
+    public void push(T element) {
+        list.add(element);
+    }
 
-	@Override
-	public int size() {
-		throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
-	}
+    @Override
+    public T pop() {
+        //todo: according to interface this method should return null if stack is empty
+        if (isEmpty()) throw new EmptyStackException();
 
-	@Override
-	public boolean isEmpty() {
-		throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
-	}
+        T element = list.get(list.size() - 1);
+        list.remove(list.size() - 1);
+        return element;
+    }
+
+    @Override
+    public int size() {
+        return list.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return list.size() == 0;
+    }
 }
