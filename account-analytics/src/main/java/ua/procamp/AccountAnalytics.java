@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 import java.time.Month;
 import java.util.*;
 
-import static java.util.stream.Collectors.toMap;
-
 /**
  * Implement methods using Stream API
  */

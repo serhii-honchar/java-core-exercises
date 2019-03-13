@@ -1,7 +1,6 @@
 package ua.procamp;
 
 import java.math.BigDecimal;
-import java.util.TreeMap;
 import java.util.function.*;
 
 public class CrazyLambdas {
